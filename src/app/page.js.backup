@@ -1,0 +1,543 @@
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Check, Send, Globe, Shield, Award, Eye } from 'lucide-react';
+import connectDB from '@/lib/mongodb';
+import Category from '@/models/Category';
+import Product from '@/models/Product';
+import { Button } from '@/components/ui/button';
+import { AnimatedSection, StaggerContainer, StaggerItem } from '@/components/ui/animations';
+
+const STATIC_CATEGORIES = [
+  {
+    _id: '1',
+    name: 'Active Wear',
+    slug: 'active-wear',
+    description: 'Performance-driven athletic apparel built for training, running, and fitness.',
+    image: '/active-wear.png',
+  },
+  {
+    _id: '2',
+    name: 'Team Wear',
+    slug: 'team-wear',
+    description: 'Custom sports uniforms, team jerseys, and match gear for clubs and professional leagues.',
+    image: '/team-wear.png',
+  },
+];
+
+const STATIC_PRODUCTS = [
+  {
+    _id: '1',
+    name: 'Pro-Fit Fleece B2B Hoodie',
+    slug: 'pro-fit-fleece-b2b-hoodie',
+    description: 'Engineered for optimal warmth and flexibility. Heavyweight 320 GSM brushed fleece. Double-lined hood, ribbed cuffs, and custom fit.',
+    images: ['/active-wear.png'],
+    minOrderQuantity: 50,
+    specifications: {
+      material: '80% Organic Cotton / 20% Polyester',
+      weight: '320 GSM',
+      customization: 'Screen Printing, Embroidery',
+    },
+  },
+  {
+    _id: '2',
+    name: 'AeroDry Moisture-Wicking Tee',
+    slug: 'aerodry-moisture-wicking-tee',
+    description: 'High-performance polyester fabric with advanced quick-dry technology. Flatlock stitching eliminates friction.',
+    images: ['/active-wear.png'],
+    minOrderQuantity: 100,
+    specifications: {
+      material: '100% Interlock Aero-Dry Polyester',
+      weight: '140 GSM',
+      customization: 'Full Sublimation, Heat Transfer',
+    },
+  },
+  {
+    _id: '3',
+    name: 'Elite Sublimated Soccer Jersey',
+    slug: 'elite-sublimated-soccer-jersey',
+    description: 'Match-grade soccer jersey featuring dynamic sublimated artwork. Ultra-breathable mesh ventilation panels underarms.',
+    images: ['/team-wear.png'],
+    minOrderQuantity: 50,
+    specifications: {
+      material: '100% Recycled Polyester Mesh',
+      weight: '160 GSM',
+      customization: 'Unlimited Sublimation Colors',
+    },
+  },
+];
+
+async function getHomeData() {
+  try {
+    await connectDB();
+    const categories = await Category.find({ parentCategory: null }).lean();
+    const featuredProducts = await Product.find({ featured: true })
+      .populate('category')
+      .populate('subcategory')
+      .limit(3)
+      .lean();
+
+    return {
+      categories: categories.length > 0 ? JSON.parse(JSON.stringify(categories)) : STATIC_CATEGORIES,
+      products: featuredProducts.length > 0 ? JSON.parse(JSON.stringify(featuredProducts)) : STATIC_PRODUCTS,
+    };
+  } catch (error) {
+    console.error('Failed to load DB data, using fallbacks:', error);
+    return {
+      categories: STATIC_CATEGORIES,
+      products: STATIC_PRODUCTS,
+    };
+  }
+}
+
+export default async function HomePage() {
+  const { categories, products } = await getHomeData();
+
+  return (
+    <div className="bg-black text-white selection:bg-neutral-900 selection:text-white overflow-hidden">
+      
+      {/* 1. Hero Section (Exact Limton.us Rebuild - Light Theme Contrast) */}
+      <section className="relative min-h-[90vh] flex items-center bg-white text-black py-16 sm:py-24 overflow-hidden">
+        
+        {/* Background video overlay (sewing / textile production loops) */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-white">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="object-cover w-full h-full opacity-[0.14]"
+          >
+            <source src="/bg-video.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
+            
+            {/* Left Column: Wording & Pillars */}
+            <div className="lg:col-span-7 space-y-8 text-left">
+              <AnimatedSection direction="up" delay={0.05}>
+                <span className="inline-flex items-center space-x-1.5 text-[11px] font-bold tracking-widest text-neutral-800 bg-white/80 border border-neutral-300 rounded-full px-4 py-1.5 uppercase shadow-sm">
+                  <span className="w-1.5 h-1.5 bg-black rounded-full"></span>
+                  <span>Premium Apparel Manufacturing</span>
+                </span>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.12}>
+                <h1 className="text-5xl sm:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-black uppercase leading-[1.02] font-sans">
+                  EVERY<br />
+                  STITCH<br />
+                  MATTERS.
+                </h1>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={0.2}>
+                <p className="text-sm sm:text-[15px] text-neutral-600 font-light leading-relaxed max-w-xl">
+                  From concept to creation — seamlessly, sustainably, reliably. Partner with a manufacturer trusted by leading brands worldwide.
+                </p>
+              </AnimatedSection>
+
+              {/* Limton-style Horizontal Pillars Row */}
+              <StaggerContainer delay={0.25} className="flex flex-wrap gap-x-8 gap-y-4 pt-6 border-t border-neutral-200">
+                <StaggerItem className="flex items-center space-x-2">
+                  <span className="flex-shrink-0 flex items-center justify-center h-4.5 w-4.5 rounded-full border border-black/35">
+                    <Check className="h-2.5 w-2.5 text-black" />
+                  </span>
+                  <span className="text-[12px] font-semibold text-neutral-800 tracking-tight">Low MOQs</span>
+                </StaggerItem>
+
+                <StaggerItem className="flex items-center space-x-2">
+                  <span className="flex-shrink-0 flex items-center justify-center h-4.5 w-4.5 rounded-full border border-black/35">
+                    <Check className="h-2.5 w-2.5 text-black" />
+                  </span>
+                  <span className="text-[12px] font-semibold text-neutral-800 tracking-tight">Fast Bulk Production</span>
+                </StaggerItem>
+
+                <StaggerItem className="flex items-center space-x-2">
+                  <span className="flex-shrink-0 flex items-center justify-center h-4.5 w-4.5 rounded-full border border-black/35">
+                    <Check className="h-2.5 w-2.5 text-black" />
+                  </span>
+                  <span className="text-[12px] font-semibold text-neutral-800 tracking-tight">Global delivery</span>
+                </StaggerItem>
+
+                <StaggerItem className="flex items-center space-x-2">
+                  <span className="flex-shrink-0 flex items-center justify-center h-4.5 w-4.5 rounded-full border border-black/35">
+                    <Check className="h-2.5 w-2.5 text-black" />
+                  </span>
+                  <span className="text-[12px] font-semibold text-neutral-800 tracking-tight">USA office</span>
+                </StaggerItem>
+              </StaggerContainer>
+
+              {/* Action Buttons Row */}
+              <AnimatedSection direction="up" delay={0.4} className="flex flex-col sm:flex-row gap-4 pt-4">
+                <Link href="/inquiry" className="w-full sm:w-auto">
+                  <Button className="w-full sm:w-auto bg-black hover:bg-neutral-900 text-white font-extrabold text-xs tracking-wider uppercase py-6 px-9 rounded-lg flex items-center justify-center gap-2 cursor-pointer shadow-md transition-colors">
+                    Request a Quote <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Link href="/inquiry" className="w-full sm:w-auto">
+                  <Button className="w-full sm:w-auto border border-black hover:bg-black hover:text-white text-black bg-transparent font-extrabold text-xs tracking-wider uppercase py-6 px-9 rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                    Book a Strategy Call <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
+              </AnimatedSection>
+            </div>
+
+            {/* Right Column: Exact Limton 5-Card Rounded Grid */}
+            <div className="lg:col-span-5 w-full">
+              <StaggerContainer delay={0.15} className="grid grid-cols-12 gap-4">
+                
+                {/* 1. Tall Left Card (NHL hockey shoe close-up) */}
+                <StaggerItem className="col-span-7 relative aspect-[3/4] rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100 group shadow-sm hover:-translate-y-1.5 hover:shadow-md hover:border-neutral-350 transition-all duration-500">
+                  <Image
+                    src="/active-wear.png"
+                    alt="Fully Custom apparel details close-up"
+                    fill
+                    sizes="(max-w-768px) 100vw, 25vw"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-95"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
+                  
+                  {/* Badge overlay at top-left */}
+                  <div className="absolute top-4 left-4 bg-white hover:bg-neutral-100 text-black text-[9px] font-extrabold tracking-wider uppercase px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                    Our Facility <ArrowRight className="h-2.5 w-2.5" />
+                  </div>
+                  
+                  {/* Title overlay at bottom-left */}
+                  <div className="absolute bottom-6 left-6">
+                    <p className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider">Manufacturing</p>
+                    <p className="text-sm font-black text-white uppercase tracking-wider mt-0.5">Fully Custom</p>
+                  </div>
+                </StaggerItem>
+
+                {/* Right Column containing 3 smaller stacked cards */}
+                <div className="col-span-5 flex flex-col gap-4">
+                  
+                  {/* 2. Embroidery Card */}
+                  <StaggerItem className="relative flex-1 aspect-square sm:aspect-auto rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100 group shadow-sm min-h-[90px] hover:-translate-y-1 hover:shadow-md hover:border-neutral-350 transition-all duration-500">
+                    <Image
+                      src="/active-wear.png"
+                      alt="Embroidery machinery close-up"
+                      fill
+                      sizes="(max-w-768px) 100vw, 15vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-95"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-3 left-4">
+                      <p className="text-[10px] font-black text-white uppercase tracking-wider">Embroidery</p>
+                    </div>
+                  </StaggerItem>
+
+                  {/* 3. Screen Printing Card */}
+                  <StaggerItem className="relative flex-1 aspect-square sm:aspect-auto rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100 group shadow-sm min-h-[90px] hover:-translate-y-1 hover:shadow-md hover:border-neutral-350 transition-all duration-500">
+                    <Image
+                      src="/team-wear.png"
+                      alt="Screen Printing apparel machine"
+                      fill
+                      sizes="(max-w-768px) 100vw, 15vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-95"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-3 left-4">
+                      <p className="text-[10px] font-black text-white uppercase tracking-wider">Screen Printing</p>
+                    </div>
+                  </StaggerItem>
+
+                  {/* 4. High Quality Equipment Card */}
+                  <StaggerItem className="relative flex-1 aspect-square sm:aspect-auto rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100 group shadow-sm min-h-[90px] hover:-translate-y-1 hover:shadow-md hover:border-neutral-350 transition-all duration-500">
+                    <Image
+                      src="/active-wear.png"
+                      alt="Precision sewing machines"
+                      fill
+                      sizes="(max-w-768px) 100vw, 15vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-95"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-3 left-4">
+                      <p className="text-[10px] font-black text-white uppercase tracking-wider">High Quality Equipment</p>
+                    </div>
+                  </StaggerItem>
+
+                </div>
+
+                {/* 5. Custom Labels Horizontal bottom card */}
+                <StaggerItem className="col-span-12 relative aspect-[4/1] rounded-lg overflow-hidden border border-neutral-200 bg-neutral-100 group shadow-sm hover:-translate-y-1 hover:shadow-md hover:border-neutral-350 transition-all duration-500">
+                  <Image
+                    src="/team-wear.png"
+                    alt="Custom woven clothing tags"
+                    fill
+                    sizes="(max-w-768px) 100vw, 40vw"
+                    className="object-cover object-center group-hover:scale-102 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal opacity-95"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-6">
+                    <p className="text-[11px] font-black text-white uppercase tracking-widest">Custom Labels</p>
+                  </div>
+                </StaggerItem>
+
+              </StaggerContainer>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Divisions section (Active Wear / Team Wear Showcase) */}
+      <section id="divisions" className="py-24 bg-black border-b border-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-16">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500 block mb-2">Manufacturing divisions</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase">OUR CORE PROGRAMS</h2>
+            <div className="h-0.5 w-12 bg-white mx-auto mt-4"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {categories.map((category, index) => (
+              <AnimatedSection key={category._id} direction={index === 0 ? "right" : "left"} delay={0.2} className="h-full">
+                <Link href={`/products?category=${category.slug}`} className="group relative block overflow-hidden bg-neutral-950 border border-neutral-900 h-full">
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt={category.name}
+                      fill
+                      sizes="(max-w-768px) 100vw, 40vw"
+                      className="object-cover object-center group-hover:scale-103 transition-transform duration-700 mix-blend-luminosity group-hover:mix-blend-normal opacity-85"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                  </div>
+
+                  <div className="p-8 relative">
+                    <h4 className="text-xl font-bold text-white uppercase tracking-wider mb-2">
+                      {category.name}
+                    </h4>
+                    <p className="text-neutral-500 text-xs leading-relaxed mb-6 font-light max-w-sm">
+                      {category.description}
+                    </p>
+                    <span className="inline-flex items-center text-[10px] font-bold text-white uppercase tracking-widest group-hover:translate-x-1.5 transition-transform duration-300">
+                      Explore Catalog
+                      <ArrowRight className="ml-2 h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </Link>
+              </AnimatedSection>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Verticals & Machinery (Screencraft / Limton integration) */}
+      <section className="py-24 bg-neutral-950 border-b border-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            {/* Left Block: Info */}
+            <div className="lg:col-span-6 space-y-6">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">B2B Manufacturing Capacity</span>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white uppercase leading-tight">
+                FULLY VERTICAL <span className="text-neutral-500">PRODUCTION FACILITY.</span>
+              </h2>
+              <div className="h-0.5 w-12 bg-white"></div>
+              <p className="text-neutral-400 text-sm leading-relaxed font-light">
+                ABI Sports operates a fully integrated vertical factory in Pakistan. From fabric knitting, dyeing, and in-house laboratory trials to automatic screen printing, computer pattern drafting, Tajima embroidery, stitching, and global doorstep shipping—we manage the entire supply chain.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                <div className="border border-neutral-900 p-4 bg-black">
+                  <span className="text-2xl font-bold text-white">150,000</span>
+                  <p className="text-[10px] text-neutral-500 uppercase mt-1 tracking-wider">Garments / Month</p>
+                </div>
+                <div className="border border-neutral-900 p-4 bg-black">
+                  <span className="text-2xl font-bold text-white">50 Pieces</span>
+                  <p className="text-[10px] text-neutral-500 uppercase mt-1 tracking-wider">Minimum Order</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Block: 4 Columns Staggered */}
+            <StaggerContainer delay={0.2} className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <StaggerItem className="p-6 bg-black border border-neutral-900">
+                <Globe className="h-6 w-6 text-white mb-4" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Global Logistics</h4>
+                <p className="text-neutral-500 text-[11px] font-light leading-relaxed">
+                  Smooth customs clearances and delivery. We pack, barcode, scan, and ship directly to your New York or European distribution center.
+                </p>
+              </StaggerItem>
+
+              <StaggerItem className="p-6 bg-black border border-neutral-900">
+                <Shield className="h-6 w-6 text-white mb-4" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Ethical Compliance</h4>
+                <p className="text-neutral-500 text-[11px] font-light leading-relaxed">
+                  Certified manufacturing conforming to BSCI, SEDEX, and GOTS standards for clean, green, and ethical production.
+                </p>
+              </StaggerItem>
+
+              <StaggerItem className="p-6 bg-black border border-neutral-900">
+                <Award className="h-6 w-6 text-white mb-4" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Italian Dye Sublimation</h4>
+                <p className="text-neutral-500 text-[11px] font-light leading-relaxed">
+                  Vivid dye-sublimation graphics for custom jerseys. Colors that never fade, crack, peel, or run during matches.
+                </p>
+              </StaggerItem>
+
+              <StaggerItem className="p-6 bg-black border border-neutral-900">
+                <Eye className="h-6 w-6 text-white mb-4" />
+                <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-2">Quality Control</h4>
+                <p className="text-neutral-500 text-[11px] font-light leading-relaxed">
+                  Calibrated inspection on cutting tables, active inline checking during assembly, and final check before retail packaging.
+                </p>
+              </StaggerItem>
+            </StaggerContainer>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Featured Products (Direct SSR database query) */}
+      <section className="py-24 bg-black border-b border-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">OEM & Private Label Programs</span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase mt-1">FEATURED PRODUCTS</h2>
+            </div>
+            <Link href="/products" className="inline-flex items-center text-[10px] font-bold text-neutral-400 hover:text-white uppercase tracking-widest mt-4 sm:mt-0 transition-colors">
+              View Catalog
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+
+          <StaggerContainer delay={0.2} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+              <StaggerItem key={product._id} className="flex flex-col bg-neutral-950 border border-neutral-900 overflow-hidden group">
+                <div className="relative aspect-square w-full bg-neutral-900 overflow-hidden">
+                  <Image
+                    src={product.images && product.images.length > 0 ? product.images[0] : '/active-wear.png'}
+                    alt={product.name}
+                    fill
+                    sizes="(max-w-768px) 100vw, 30vw"
+                    className="object-cover object-center opacity-85 mix-blend-luminosity group-hover:mix-blend-normal group-hover:scale-101 transition-all duration-500"
+                  />
+                  <div className="absolute top-4 left-4 bg-black border border-neutral-900 text-neutral-300 text-[10px] uppercase font-bold tracking-widest px-2.5 py-1">
+                    MOQ: {product.minOrderQuantity} Units
+                  </div>
+                </div>
+
+                <div className="p-6 flex flex-col flex-grow">
+                  <h4 className="text-base font-bold text-white uppercase tracking-wider mb-2">
+                    {product.name}
+                  </h4>
+                  <p className="text-neutral-500 text-[11px] font-light leading-relaxed mb-6 flex-grow">
+                    {product.description}
+                  </p>
+                  
+                  <div className="border-t border-neutral-900/60 pt-4 mt-auto">
+                    <div className="grid grid-cols-2 gap-2 text-[10px] text-neutral-400">
+                      <div>
+                        <span className="text-neutral-600 block uppercase">Material</span>
+                        <span className="truncate block font-semibold mt-0.5">{product.specifications?.material || 'Organic Cotton Blend'}</span>
+                      </div>
+                      <div>
+                        <span className="text-neutral-600 block uppercase">Weight</span>
+                        <span className="truncate block font-semibold mt-0.5">{product.specifications?.weight || '320 GSM'}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link href={`/products/${product.slug}`} className="mt-6">
+                    <Button variant="outline" className="w-full border-neutral-900 hover:border-neutral-800 hover:bg-white hover:text-black text-white font-semibold text-xs tracking-wider uppercase py-5 rounded-lg cursor-pointer transition-colors duration-300">
+                      Specifications
+                    </Button>
+                  </Link>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+        </div>
+      </section>
+
+      {/* 5. Production Workflow Timeline */}
+      <section className="py-24 bg-neutral-950 border-b border-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center mb-20">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">From concept to retail cartons</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase mt-1">THE B2B WORKFLOW</h2>
+            <div className="h-0.5 w-12 bg-white mx-auto mt-4"></div>
+          </div>
+
+          <StaggerContainer delay={0.2} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <StaggerItem className="relative p-6 bg-black border border-neutral-900">
+              <span className="text-4xl font-black text-neutral-800 block mb-4">01</span>
+              <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">Design & Blueprint</h4>
+              <p className="text-[11px] text-neutral-500 leading-relaxed font-light">
+                We turn your concept sketches into custom size specs, pattern sheets, logo digitization, and production-ready tech packs.
+              </p>
+            </StaggerItem>
+
+            <StaggerItem className="relative p-6 bg-black border border-neutral-900">
+              <span className="text-4xl font-black text-neutral-800 block mb-4">02</span>
+              <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">Fabric & Dye R&D</h4>
+              <p className="text-[11px] text-neutral-500 leading-relaxed font-light">
+                Sourcing organic cotton, technical polyester yarn knitting, fabric lab tests, and dyeing programs matching Pantone codes.
+              </p>
+            </StaggerItem>
+
+            <StaggerItem className="relative p-6 bg-black border border-neutral-900">
+              <span className="text-4xl font-black text-neutral-800 block mb-4">03</span>
+              <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">Stitching & QC</h4>
+              <p className="text-[11px] text-neutral-500 leading-relaxed font-light">
+                Precision cutting, screen printing, embroidery, flatlock/overlock seam sewing, with multi-stage inspection checks.
+              </p>
+            </StaggerItem>
+
+            <StaggerItem className="relative p-6 bg-black border border-neutral-900">
+              <span className="text-4xl font-black text-neutral-800 block mb-4">04</span>
+              <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">Packaging & Shipping</h4>
+              <p className="text-[11px] text-neutral-500 leading-relaxed font-light">
+                Trim, hot iron press, fold, barcode tag, bundle pack inside custom double-walled export cartons, and doorstep air/sea delivery.
+              </p>
+            </StaggerItem>
+          </StaggerContainer>
+
+        </div>
+      </section>
+
+      {/* 6. Strict B2B Quote Action Banner */}
+      <section className="py-24 bg-black">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection direction="up" delay={0.1}>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase mb-6">
+              SECURE YOUR MFG PROGRAM
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection direction="up" delay={0.2}>
+            <p className="text-neutral-400 text-sm mb-10 max-w-lg mx-auto leading-relaxed font-light">
+              Ready to construct your next activewear collection or get custom sublimated uniforms? Submit your RFQ details or tech packs.
+            </p>
+          </AnimatedSection>
+          
+          <AnimatedSection direction="up" delay={0.3} className="flex flex-col sm:flex-row justify-center gap-4">
+            <Link href="/inquiry">
+              <Button className="w-full sm:w-auto bg-white hover:bg-neutral-200 text-black font-semibold text-xs tracking-wider uppercase py-6 px-8 rounded-lg transition-all duration-300 cursor-pointer">
+                Submit RFQ Details
+                <Send className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button variant="outline" className="w-full sm:w-auto border-neutral-800 hover:bg-neutral-900 text-neutral-300 hover:text-white font-semibold text-xs tracking-wider uppercase py-6 px-8 rounded-lg transition-all duration-300 cursor-pointer">
+                About Our Facility
+              </Button>
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
+
+    </div>
+  );
+}
