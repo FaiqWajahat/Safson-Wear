@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { PRODUCT_IMAGES } from '@/data/productImages.mjs';
 
 const FALLBACK_RELATED = [
   {
@@ -12,7 +13,7 @@ const FALLBACK_RELATED = [
     categoryName: 'Street Wear',
     categorySlug: 'street-wear',
     description: 'Ultra-heavy 450 GSM organic french terry cotton pullover featuring double-layer hood and drop-shoulder boxy fit.',
-    image: '/active-wear.png',
+    image: PRODUCT_IMAGES['heavyweight-french-terry-pullover'][0],
     minOrderQuantity: 20,
     tieredPricing: { sample: { price: 42 } },
   },
@@ -23,7 +24,7 @@ const FALLBACK_RELATED = [
     categoryName: 'Street Wear',
     categorySlug: 'street-wear',
     description: '240 GSM combed ring-spun cotton heavyweight tee with handcrafted vintage acid wash finish.',
-    image: '/hero.png',
+    image: PRODUCT_IMAGES['vintage-acid-wash-heavyweight-street-tee'][0],
     minOrderQuantity: 50,
     tieredPricing: { sample: { price: 25 } },
   },
@@ -34,7 +35,7 @@ const FALLBACK_RELATED = [
     categoryName: 'Sports Wear',
     categorySlug: 'sports-wear',
     description: 'Fully sublimated football jersey and shorts set in lightweight 140 GSM polyester interlock.',
-    image: '/team-wear.png',
+    image: PRODUCT_IMAGES['sublimated-football-kit'][0],
     minOrderQuantity: 15,
     tieredPricing: { sample: { price: 35 } },
   },

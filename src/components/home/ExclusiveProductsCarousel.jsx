@@ -7,63 +7,12 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import SectionHeading from '@/components/home/SectionHeading';
+import { FEATURED_PRODUCTS } from '@/data/featuredProducts';
 
 import 'swiper/css';
 
-const PRODUCTS = [
-  {
-    id: 'oversized-drop-shoulder-hoodie',
-    name: 'Oversized Drop-Shoulder Hoodie',
-    category: 'Street Wear',
-    categorySlug: 'street-wear',
-    subSlug: 'hoodies',
-    detail: '320 GSM French Terry',
-    moq: 20,
-    image: '/active-wear.png',
-  },
-  {
-    id: 'sublimated-football-kit',
-    name: 'Sublimated Football Kit',
-    category: 'Sports Wear',
-    categorySlug: 'sports-wear',
-    subSlug: 'football',
-    detail: '140 GSM Polyester Interlock',
-    moq: 15,
-    image: '/team-wear.png',
-  },
-  {
-    id: 'basketball-uniform-set',
-    name: 'Basketball Uniform Set',
-    category: 'Sports Wear',
-    categorySlug: 'sports-wear',
-    subSlug: 'basketball',
-    detail: '150 GSM Dri-Mesh',
-    moq: 15,
-    image: '/team.jpg',
-  },
-  {
-    id: 'vintage-acid-wash-heavyweight-street-tee',
-    name: 'Vintage Acid-Wash Heavyweight Tee',
-    category: 'Street Wear',
-    categorySlug: 'street-wear',
-    subSlug: 't-shirts',
-    detail: '240 GSM Ring-Spun Cotton',
-    moq: 50,
-    image: '/active.jpg',
-  },
-  {
-    id: 'american-football-game-jersey',
-    name: 'American Football Game Jersey',
-    category: 'Sports Wear',
-    categorySlug: 'sports-wear',
-    subSlug: 'american-football',
-    detail: '180 GSM Pro-Mesh',
-    moq: 15,
-    image: '/hero-01.png',
-  },
-];
-
-export default function ExclusiveProductsCarousel() {
+// `products` comes from the home page with live images from the database
+export default function ExclusiveProductsCarousel({ products: PRODUCTS = FEATURED_PRODUCTS }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [current, setCurrent] = useState(0);
