@@ -30,7 +30,7 @@ export default function StatsBand() {
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-neutral-200">
             <Image
               src="/why-us.png"
-              alt="Fast Apparel worker stitching a sports jersey at the Sialkot factory"
+              alt="Safson Wear worker stitching a sports jersey at the Sialkot factory"
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="object-cover"

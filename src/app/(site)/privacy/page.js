@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Privacy Policy | Fast Apparel — B2B Sportswear Manufacturers',
+  title: 'Privacy Policy | Safson Wear — B2B Sportswear Manufacturers',
   description:
-    'Read the Fast Apparel privacy policy. Learn how we handle corporate contact information, design briefs, vector logos, CAD templates, and intellectual property protection.',
+    'Read the Safson Wear privacy policy. Learn how we handle corporate contact information, design briefs, vector logos, CAD templates, and intellectual property protection.',
 };
 
 export default function PrivacyPage() {
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="text-sm text-black/60 leading-relaxed">
-              Fast Apparel is committed to protecting your personal information and corporate intellectual property. This policy explains our data management, design protection rules, and manufacturing confidentiality guidelines.
+              Safson Wear is committed to protecting your personal information and corporate intellectual property. This policy explains our data management, design protection rules, and manufacturing confidentiality guidelines.
             </p>
           </div>
 
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
                 compliance@fastapparel.com
               </a>
               <span className="text-xs font-semibold text-black/45">
-                Fast Apparel — Compliance Division
+                Safson Wear — Compliance Division
               </span>
             </div>
           </div>

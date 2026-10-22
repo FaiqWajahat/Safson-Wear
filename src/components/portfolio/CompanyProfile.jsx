@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2 } from 'lucide-react';
 
 const MILESTONES = [
-  { year: '2011', event: 'Fast Apparel founded in Sialkot, Pakistan' },
+  { year: '2011', event: 'Safson Wear founded in Sialkot, Pakistan' },
   { year: '2013', event: 'Expanded to 650+ machine operators on floor' },
   { year: '2017', event: 'WRAP Platinum & SEDEX SMETA accreditation' },
   { year: '2024', event: '5M+ garments produced annually, 60+ countries' },
@@ -45,16 +45,16 @@ export default function CompanyProfile() {
               <div className="mb-10">
                 <span className="text-[10px] font-mono uppercase tracking-[0.22em] text-slate-400 mb-2 block">About the Manufacturer</span>
                 <h2 className="text-3xl sm:text-4xl lg:text-[2.8rem] font-bold tracking-tight text-slate-900 leading-tight">
-                  Fast Apparel — Who We Are
+                  Safson Wear — Who We Are
                 </h2>
               </div>
               
               <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-6 mb-12">
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Fast Apparel is a leading custom apparel manufacturer specializing in premium-quality Activewear, Swimwear, Teamwear, and Streetwear. We provide end-to-end manufacturing solutions, from design and fabric sourcing to printing, embroidery, and worldwide delivery.
+                  Safson Wear is a leading custom apparel manufacturer specializing in premium-quality Activewear, Swimwear, Teamwear, and Streetwear. We provide end-to-end manufacturing solutions, from design and fabric sourcing to printing, embroidery, and worldwide delivery.
                 </p>
                 <p className="text-sm text-slate-500 leading-relaxed">
-                  Founded in 2011 by experienced professionals in the textile industry, Fast Apparel started as a small manufacturing operation focused on delivering reliable apparel solutions. Today, we manufacture premium apparel for brands around the globe while maintaining the same commitment to quality and integrity.
+                  Founded in 2011 by experienced professionals in the textile industry, Safson Wear started as a small manufacturing operation focused on delivering reliable apparel solutions. Today, we manufacture premium apparel for brands around the globe while maintaining the same commitment to quality and integrity.
                 </p>
               </motion.div>
 

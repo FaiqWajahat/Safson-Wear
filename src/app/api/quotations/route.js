@@ -97,20 +97,20 @@ export async function POST(req) {
     try {
       const transporter = getTransporter();
       if (transporter) {
-        const fromEmail = process.env.SMTP_FROM || `"Fast Apparel" <inquiries@fastapparel.com>`;
+        const fromEmail = process.env.SMTP_FROM || `"Safson Wear" <inquiries@fastapparel.com>`;
         const adminEmail = process.env.ADMIN_EMAIL || 'admin@fastapparel.com';
 
         // 1. Send HTML confirmation to the Client
         const clientMailOptions = {
           from: fromEmail,
           to: email.toLowerCase(),
-          subject: 'Quotation Request Received - Fast Apparel',
+          subject: 'Quotation Request Received - Safson Wear',
           html: `
             <div style="font-family: 'Inter', sans-serif; background-color: #fafafa; padding: 40px 20px; color: #111;">
               <div style="max-width: 600px; margin: 0 auto; bg-color: #ffffff; background: #ffffff; border-radius: 12px; border: 1px solid #e5e5e5; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
                 <!-- Black Header Banner -->
                 <div style="background-color: #000000; padding: 30px; text-align: center;">
-                  <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase;">Fast Apparel</h1>
+                  <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase;">Safson Wear</h1>
                   <p style="color: #a3a3a3; margin: 5px 0 0 0; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;">OEM Custom Apparel Manufacturers</p>
                 </div>
 
@@ -118,7 +118,7 @@ export async function POST(req) {
                 <div style="padding: 40px 30px;">
                   <h2 style="font-size: 18px; font-weight: 900; text-transform: uppercase; margin: 0 0 15px 0; letter-spacing: -0.5px;">RFQ Submission Confirmed</h2>
                   <p style="font-size: 13px; color: #404040; line-height: 1.6; font-weight: 300;">
-                    Thank you for contacting Fast Apparel. We have received your detailed manufacturing brief. Our B2B technical team is reviewing your specifications (including sizing templates, fabric weight preferences, and custom artwork vectors) and will send a formal production quote within <strong>12 business hours</strong>.
+                    Thank you for contacting Safson Wear. We have received your detailed manufacturing brief. Our B2B technical team is reviewing your specifications (including sizing templates, fabric weight preferences, and custom artwork vectors) and will send a formal production quote within <strong>12 business hours</strong>.
                   </p>
 
                   <!-- Details Panel -->
@@ -163,7 +163,7 @@ export async function POST(req) {
 
                 <!-- Footer block -->
                 <div style="background-color: #fafafa; border-top: 1px solid #e5e5e5; padding: 20px; text-align: center; font-size: 10px; color: #a3a3a3;">
-                  &copy; ${new Date().getFullYear()} Al Badar Impex. All rights reserved. Sialkot, Pakistan.
+                  &copy; ${new Date().getFullYear()} Safson Wear. All rights reserved. Sialkot, Pakistan.
                 </div>
               </div>
             </div>

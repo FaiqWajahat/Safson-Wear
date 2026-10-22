@@ -25,9 +25,9 @@ const ClosingCTA = dynamic(() => import('@/components/home/ClosingCTA'), {
 });
 
 export const metadata = {
-  title: 'Production | Fast Apparel — Custom Sportswear Manufacturers',
+  title: 'Production | Safson Wear — Custom Sportswear Manufacturers',
   description:
-    "Explore Fast Apparel's vertically integrated production capabilities — from CAD cutting, flatlock stitching, and embroidery to packaging and global logistics.",
+    "Explore Safson Wear's vertically integrated production capabilities — from CAD cutting, flatlock stitching, and embroidery to packaging and global logistics.",
 };
 
 export default function ProductionPage() {

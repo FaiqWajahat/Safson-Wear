@@ -34,7 +34,7 @@ export default function CertificationsAndEdge() {
                 CERTIFICATIONS<br />& COMPLIANCE
               </h2>
               <p className="text-sm text-slate-500 leading-relaxed max-w-md">
-                Every production facility at Fast Apparel holds internationally recognised certifications across social compliance, chemical safety, organic processing, and quality management.
+                Every production facility at Safson Wear holds internationally recognised certifications across social compliance, chemical safety, organic processing, and quality management.
               </p>
             </motion.div>
           </div>
@@ -62,7 +62,7 @@ export default function CertificationsAndEdge() {
                 Competitive Advantages
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-[2.8rem] font-bold tracking-tight text-slate-900 leading-tight">
-                WHY AL BADAR IMPEX?
+                WHY SAFSON WEAR?
               </h2>
             </motion.div>
           </div>

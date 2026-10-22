@@ -5,9 +5,9 @@ import Product from '@/models/Product';
 import Category from '@/models/Category';
 
 export const metadata = {
-  title: 'Products | Fast Apparel — Custom Apparel Manufacturer',
+  title: 'Products | Safson Wear — Custom Apparel Manufacturer',
   description:
-    "Explore Fast Apparel's catalog of custom street wear and sports wear. Request custom samples and bulk B2B quotes.",
+    "Explore Safson Wear's catalog of custom street wear and sports wear. Request custom samples and bulk B2B quotes.",
 };
 
 // Revalidate page every 5 minutes (ISR) so product changes show without a full redeploy

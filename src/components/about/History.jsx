@@ -11,7 +11,7 @@ const TIMELINE_EVENTS = [
   {
     year: '2011',
     title: 'Small-scale stitching setup',
-    description: 'Fast Apparel started as an apparel manufacturing operation in Sialkot, Pakistan, focused on delivering high-quality, reliable B2B apparel solutions.',
+    description: 'Safson Wear started as an apparel manufacturing operation in Sialkot, Pakistan, focused on delivering high-quality, reliable B2B apparel solutions.',
   },
   {
     year: '2015',

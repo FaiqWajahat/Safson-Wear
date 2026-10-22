@@ -8,9 +8,9 @@ import BrandTicker from '@/components/home/BrandTicker';
 import ClosingCTA from '@/components/home/ClosingCTA';
 
 export const metadata = {
-  title: 'Portfolio | Fast Apparel — Custom Sportswear Manufacturers',
+  title: 'Portfolio | Safson Wear — Custom Sportswear Manufacturers',
   description:
-    "Browse Fast Apparel's portfolio of custom streetwear & sports wear collections.",
+    "Browse Safson Wear's portfolio of custom streetwear & sports wear collections.",
 };
 
 export default function PortfolioPage() {

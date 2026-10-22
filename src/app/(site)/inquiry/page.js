@@ -5,9 +5,9 @@ import TimeSection from '@/components/home/TimeSection';
 import QuoteForm from '@/components/inquiry/QuoteForm';
 
 export const metadata = {
-  title: 'Request a Quote | Fast Apparel — B2B Sportswear Manufacturing',
+  title: 'Request a Quote | Safson Wear — B2B Sportswear Manufacturing',
   description:
-    'Get a custom manufacturing quote from Fast Apparel. Tell us your product requirements, quantities, and timeline — our B2B sales team responds within 12 business hours.',
+    'Get a custom manufacturing quote from Safson Wear. Tell us your product requirements, quantities, and timeline — our B2B sales team responds within 12 business hours.',
 };
 
 export default function InquiryPage() {

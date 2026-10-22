@@ -10,7 +10,7 @@ const MEMBERS = [
     id: 0,
     name: 'Badar Jamil',
     role: 'Chief Executive Officer',
-    bio: 'Spearheads the strategic vision and overall vertical manufacturing operations of Fast Apparel.',
+    bio: 'Spearheads the strategic vision and overall vertical manufacturing operations of Safson Wear.',
     email: 'jamil.badar@fastapparel.com',
   },
   {

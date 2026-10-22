@@ -17,9 +17,9 @@ const ClosingCTA = dynamic(() => import('@/components/home/ClosingCTA'), {
 });
 
 export const metadata = {
-  title: 'B2B Sourcing & Custom Manufacturing Services | Fast Apparel',
+  title: 'B2B Sourcing & Custom Manufacturing Services | Safson Wear',
   description:
-    "Explore Fast Apparel's custom manufacturing services — from raw fabric sourcing, pattern CAD design, and prototyping to printing, embroidery, and global door-to-door delivery.",
+    "Explore Safson Wear's custom manufacturing services — from raw fabric sourcing, pattern CAD design, and prototyping to printing, embroidery, and global door-to-door delivery.",
 };
 
 export default function ServicesPage() {

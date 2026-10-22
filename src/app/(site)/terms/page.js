@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Terms of Service | Fast Apparel — B2B Sportswear Manufacturers',
+  title: 'Terms of Service | Safson Wear — B2B Sportswear Manufacturers',
   description:
-    'Read the Fast Apparel terms of service. Learn about B2B pricing quote validity, payment structures, prototyping policies, size tolerances, and bulk shipping agreements.',
+    'Read the Safson Wear terms of service. Learn about B2B pricing quote validity, payment structures, prototyping policies, size tolerances, and bulk shipping agreements.',
 };
 
 export default function TermsPage() {
@@ -13,7 +13,7 @@ export default function TermsPage() {
     {
       title: '1. B2B Quotes & Pricing Validity',
       content:
-        'All production quotes issued by Fast Apparel are valid for exactly 30 calendar days from date of issuance. Due to global cotton, polyester yarn, and dye chemical cost fluctuations, prices may be adjusted beyond this window. Quotes do not include shipping freight, import customs tariffs, or localized VAT, which are itemized separately upon final invoice generation.',
+        'All production quotes issued by Safson Wear are valid for exactly 30 calendar days from date of issuance. Due to global cotton, polyester yarn, and dye chemical cost fluctuations, prices may be adjusted beyond this window. Quotes do not include shipping freight, import customs tariffs, or localized VAT, which are itemized separately upon final invoice generation.',
     },
     {
       title: '2. Payment Terms & Deposit Structure',
@@ -28,7 +28,7 @@ export default function TermsPage() {
     {
       title: '4. Shipping, Logistics & Delivery Duties',
       content:
-        'Unless explicitly specified as DDP (Delivered Duty Paid), all bulk orders are shipped FOB (Free on Board) from Sialkot/Karachi ports. Risk of loss and title transfer pass to the buyer once the carrier logs the shipment. Delivery lead times are estimates; Fast Apparel is not liable for cargo transit delays caused by customs port congestion or global carrier capacity shortages.',
+        'Unless explicitly specified as DDP (Delivered Duty Paid), all bulk orders are shipped FOB (Free on Board) from Sialkot/Karachi ports. Risk of loss and title transfer pass to the buyer once the carrier logs the shipment. Delivery lead times are estimates; Safson Wear is not liable for cargo transit delays caused by customs port congestion or global carrier capacity shortages.',
     },
     {
       title: '5. Quality Claims & Inspection Policy',
@@ -59,7 +59,7 @@ export default function TermsPage() {
               Terms of Service
             </h1>
             <p className="text-sm text-black/60 leading-relaxed">
-              These terms govern B2B sportswear custom manufacturing and logistics agreements between Fast Apparel and purchase organizations. Please review these specifications before initiating prototyping.
+              These terms govern B2B sportswear custom manufacturing and logistics agreements between Safson Wear and purchase organizations. Please review these specifications before initiating prototyping.
             </p>
           </div>
 
@@ -93,7 +93,7 @@ export default function TermsPage() {
                 legal@fastapparel.com
               </a>
               <span className="text-xs font-semibold text-black/45">
-                Fast Apparel — Legal & Contract Division
+                Safson Wear — Legal & Contract Division
               </span>
             </div>
           </div>

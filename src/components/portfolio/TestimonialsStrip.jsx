@@ -9,14 +9,14 @@ const ROTATE_MS = 7000;
 
 const TESTIMONIALS = [
   {
-    quote: "Fast Apparel delivered 800 tournament kits with perfect sublimation in under 30 days. The flatlock seam quality and player name accuracy across all sizes was flawless. Three seasons in and we've never looked back.",
+    quote: "Safson Wear delivered 800 tournament kits with perfect sublimation in under 30 days. The flatlock seam quality and player name accuracy across all sizes was flawless. Three seasons in and we've never looked back.",
     name: 'Marcus Hoffmann',
     role: 'Kit Manager',
     company: 'Blaze United FC',
     initials: 'MH',
   },
   {
-    quote: 'We switched to Fast Apparel for our private-label activewear line and the difference was immediate. GSM accuracy is spot-on every single order, and the Oeko-Tex certification satisfied our Scandinavian retail buyers without a second question.',
+    quote: 'We switched to Safson Wear for our private-label activewear line and the difference was immediate. GSM accuracy is spot-on every single order, and the Oeko-Tex certification satisfied our Scandinavian retail buyers without a second question.',
     name: 'Lena Bergström',
     role: 'Head of Sourcing',
     company: 'Nordiq Athletic',

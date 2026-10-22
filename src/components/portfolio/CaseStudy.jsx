@@ -76,7 +76,7 @@ export default function CaseStudy() {
             className="lg:col-span-5"
           >
             <p className="text-[15px] text-black/60 leading-relaxed">
-              Blaze United commissioned Fast Apparel for their 2024 European tournament program — a 1,200-unit run spanning home, away, third, and goalkeeper colourways with allover sublimation and RFID integration for stadium access.
+              Blaze United commissioned Safson Wear for their 2024 European tournament program — a 1,200-unit run spanning home, away, third, and goalkeeper colourways with allover sublimation and RFID integration for stadium access.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-px bg-black/10 rounded-3xl overflow-hidden border border-black/10">

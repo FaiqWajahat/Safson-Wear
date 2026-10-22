@@ -31,8 +31,8 @@ const ClosingCTA = dynamic(() => import('@/components/home/ClosingCTA'), {
 });
 
 export const metadata = {
-  title: "About Us | Fast Apparel — Custom Sportswear Manufacturers",
-  description: "Explore the manufacturing history, quality control audits, leadership, and sustainability commitments of Fast Apparel."
+  title: "About Us | Safson Wear — Custom Sportswear Manufacturers",
+  description: "Explore the manufacturing history, quality control audits, leadership, and sustainability commitments of Safson Wear."
 };
 
 export default function AboutPage() {
