@@ -1,24 +1,21 @@
 import Image from 'next/image';
 
 // Server Component — CSS-only marquee animation
-const LOGO_PATHS = [
-  '/client-01.png',
-  '/client-02.png',
-  '/client-03.png',
-  '/client-04.png',
-  '/client-05.png',
-  '/client-06.png',
-  '/client-07.png',
-  '/client-08.png',
-  '/client-09.jpeg',
-  '/client-10.png',
+const CLIENTS = [
+  { name: 'Chase Up', src: '/clients/chase-up.png', width: 489, height: 99 },
+  { name: 'Chase Value', src: '/clients/chase-value.png', width: 227, height: 69 },
+  { name: 'KFC', src: '/clients/kfc.png', width: 600, height: 190 },
+  { name: 'Imtiaz', src: '/clients/imtiaz.png', width: 600, height: 223 },
 ];
+
+// Few logos — repeat them so one marquee track is wider than large screens
+const TRACK = [...CLIENTS, ...CLIENTS, ...CLIENTS];
 
 export default function BrandTicker() {
   return (
     <section className="bg-white border-b border-black/10 py-10 font-sans select-none overflow-hidden relative">
       <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-black/40 mb-7">
-        Trusted by brands worldwide
+        Trusted by leading brands
       </p>
 
       <div className="relative">
@@ -27,18 +24,18 @@ export default function BrandTicker() {
 
         <div className="animate-marquee items-center">
           {[0, 1].map((loop) => (
-            <div key={loop} className="flex items-center gap-14 pr-14" aria-hidden={loop === 1}>
-              {LOGO_PATHS.map((src, index) => (
+            <div key={loop} className="flex items-center gap-16 sm:gap-20 pr-16 sm:pr-20" aria-hidden={loop === 1}>
+              {TRACK.map((client, index) => (
                 <div
                   key={`${loop}-${index}`}
-                  className="relative shrink-0 w-28 sm:w-32 h-12 opacity-60 hover:opacity-100 transition-opacity duration-300"
+                  className="relative shrink-0 w-28 sm:w-36 h-10 sm:h-12 opacity-80 hover:opacity-100 transition-opacity duration-300"
                 >
                   <Image
-                    src={src}
-                    alt={loop === 0 ? 'Client logo' : ''}
+                    src={client.src}
+                    alt={loop === 0 && index < CLIENTS.length ? client.name : ''}
                     fill
                     loading="lazy"
-                    sizes="128px"
+                    sizes="144px"
                     className="object-contain"
                   />
                 </div>
