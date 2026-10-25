@@ -6,6 +6,9 @@ const CLIENTS = [
   { name: 'Chase Value', src: '/clients/chase-value.png', width: 227, height: 69 },
   { name: 'KFC', src: '/clients/kfc.png', width: 600, height: 190 },
   { name: 'Imtiaz', src: '/clients/imtiaz.png', width: 600, height: 223 },
+  { name: 'Metro', src: '/clients/metro.png', width: 640, height: 168 },
+  { name: 'Eminent', src: '/clients/eminent.png', width: 867, height: 370 },
+  { name: 'Kifayah', src: '/clients/kifaya.png', width: 517, height: 102 },
 ];
 
 // Few logos — repeat them so one marquee track is wider than large screens
